@@ -42,10 +42,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  akanksha_dbt_project:      # must match name: in dbt_project.yml
+  akanksha_dbt_project:        # must match name: at the top of the file
+    +database: PC_DBT_DB
     silver:
       +schema: silver
       +materialized: table
     gold:
       +schema: gold
       +materialized: view
+
+snapshots:
+  akanksha_dbt_project:
+    +database: PC_DBT_DB
